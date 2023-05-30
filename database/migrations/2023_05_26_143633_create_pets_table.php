@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('breed');
+            $table->date('date');
+            $table->string('how_long');
+            $table->integer('cost');
             $table->integer('age')->unsigned();
             $table->string('pet_picture')->nullable();
             $table->timestamps();

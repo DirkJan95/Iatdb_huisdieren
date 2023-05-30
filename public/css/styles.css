@@ -1,0 +1,65 @@
+body {
+    background-color: #f9f7fd;
+    color: #100a1f;
+    margin: 0;
+}
+
+.grid {
+    width: 100%;
+    /* gap: 2rem; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
+    grid-auto-rows: 400px;
+}
+
+.petCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;  
+    background-color: #e4baaa;  
+    margin: 16px;
+  }
+  
+.petCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+.petCardTextContainer {
+    padding: 2px 16px;    
+  }
+
+img {
+    width: 100%;
+    height: 300px;
+    border-radius: 5px 5px 0 0;
+  }
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #e4baaa;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #aae4ba;
+  color: #ffffff;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #aae4ba;
+  color: #ffffff;
+}
