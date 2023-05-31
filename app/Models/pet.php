@@ -31,6 +31,8 @@ class Pet extends Model
         'cost',
         'age',
         'pet_picture',
+        'claimed',
+        'ownerId',
     ];
 
     /**

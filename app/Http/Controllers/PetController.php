@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
@@ -44,7 +46,10 @@ class PetController extends Controller
             'pet_picture' => 'nullable|string',
         ]);
 
-        $pet = Pet::create($data);
+        $data['ownerId'] = $request->user()->id;
+        $user = $request->user();
+
+        $user->pets()->create($data);
 
         return back()->with('status', "Huisdier toegevoegd!");
     }
@@ -68,8 +73,28 @@ class PetController extends Controller
             'pet_picture' => 'nullable|string',
         ]);
 
+
+
         $pet->update($data);
 
         return response()->json($pet);
+    }
+
+    public function yourPets()
+    {
+        $user = auth()->user();
+        $linkedPets = $user->pets;
+
+        return view('jouwDieren')->with('linkedPets', $linkedPets);
+    }
+
+    public function claim(Request $request, Pet $pet)
+    {
+        $user = $request->user();
+        $pet->update(['claimed' => true]);
+        $user->pets()->attach($pet);
+
+
+        return redirect()->back()->with('status', 'Pet claimed successfully.');
     }
 }
