@@ -20,9 +20,13 @@ use App\Http\Controllers\ProfileController;
 
 Route::view('/blocked', 'blocked')->name('blocked');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 
 Route::middleware('auth', 'blocked')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,7 +36,7 @@ Route::middleware('auth', 'blocked')->group(function () {
 
     Route::get('/profiel/{id}', [UserController::class, 'getProfile'])->name('profile.show');
     Route::get('/pet/{id}', [PetController::class, 'getPet']);
-    Route::get('/petsOverview', [PetController::class, 'index'])->name('pet.index');
+    Route::get('/', [PetController::class, 'index'])->name('pet.index');
     Route::get('/jouwDieren', [PetController::class, 'yourpets']);
     Route::get('/users/{userId}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
 

@@ -1,3 +1,5 @@
+
+
 body {
     background-color: #f9f7fd;
     color: #100a1f;
@@ -8,8 +10,8 @@ body {
 .grid {
     width: 100%;    
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 450px));
-    grid-auto-rows: 550px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
+    grid-auto-rows: 520px;
 }
 
 .petCard {
@@ -19,7 +21,7 @@ body {
     transition: 0.3s;
     border-radius: 5px;  
     background-color: #e4baaa;  
-    margin: 32px;
+    margin: 12px;
   }
   
 .petCard:hover {
@@ -80,6 +82,66 @@ img {
   padding: 16px;
 }
 
-.petCardContent .rightSide {
-  
+.filters {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px; 
+
+}
+
+.filters .form-group {
+  margin-bottom: 10px;
+}
+
+.filters label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.filters select,
+input[type="date"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.filters button[type="submit"] {
+  display: block;
+  margin-top: 10px;
+  margin-left: 150px;
+  padding: 10px;
+  background-color: #aae4ba;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.claimForm button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.claimForm button[type="submit"] {
+  display: block;
+  margin-top: 10px;
+  margin-left: 150px;
+  padding: 10px;
+  background-color: #aae4ba;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.claimForm button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.claimed{
+  color: #aae4ba;
+  text-align: center;
 }

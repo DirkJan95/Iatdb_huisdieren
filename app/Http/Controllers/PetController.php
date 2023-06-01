@@ -20,9 +20,13 @@ class PetController extends Controller
             $query->where('breed', $request->input('breed'));
         }
 
-        if ($request->filled('age')) {
-            $ageRange = explode('-', $request->input('age'));
-            $query->whereBetween('age', $ageRange);
+        if ($request->filled('cost')) {
+            $costRange = explode('-', $request->input('cost'));
+            $query->whereBetween('cost', $costRange);
+        }
+
+        if ($request->filled('date')) {
+            $query->where('date', $request->input('date'));
         }
 
         $pets = $query->get();

@@ -1,27 +1,32 @@
-
-
 @extends('layout')
 
 @section('content')
 
-<form action="{{ route('pet.index') }}" method="GET">
+<form class="filters" action="{{ route('pet.index') }}" method="GET">
     <div class="form-group">
-        <label for="breed">Breed:</label>
+        <label for="breed">Soort dier:</label>
         <select name="breed" id="breed">
-            <option value="">All</option>
-            <option value="Cat">Cat</option>
-            <option value="Dog">Dog</option>
-            <option value="Dog">Rabbit</option>            
+            <option value="">Alles</option>
+            <option value="Cat">Kat</option>
+            <option value="Dog">Hond</option>
+            <option value="Other">Anders</option>            
         </select>
     </div>
     <div class="form-group">
-        <label for="age">Age Range:</label>
-        <select name="age" id="age">
-            <option value="">All</option>
-            <option value="0-1">0-1 year</option>
-            <option value="1-3">1-3 years</option>            
+        <label for="cost">Kosten is euro's:</label>
+        <select name="cost" id="cost">
+            <option value="">Alles</option>
+            <option value="0-5">0 - 5</option>
+            <option value="5-10">5 - 10</option>
+            <option value="10-20">10 - 20</option>     
+            <option value="21-9999">20+</option>         
         </select>
-    </div>    
+    </div> 
+    <div class="form-group">
+        <label for="date">Start datum:</label>
+        <input type="date" name="date" id="date">
+    </div>  
+       
     <button type="submit">Filter</button>
 </form>
     
@@ -41,13 +46,13 @@
                     <h4>op {{$pet->date}}</h4>
                 </div>
                 @if ($pet->claim_status == null)
-                    <form action="{{ route('pets.claim', ['pet' => $pet->id]) }}" method="POST">
+                    <form class="claimForm" action="{{ route('pets.claim', ['pet' => $pet->id]) }}" method="POST">
                         @csrf
-                        <button type="submit">Claim</button>
+                        <button type="submit">Vraag om op te passen!</button>
                     </form>
                 @endif
                 @if ($pet->claim_status === 'pending')
-                    <h4>onder review</h4>
+                    <h2 class="claimed">onder aanvraag!</h2>
                 @endif
             </div>
         @endif

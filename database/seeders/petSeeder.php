@@ -13,12 +13,16 @@ class PetSeeder extends Seeder
         Pet::create([
             'name' => 'Momo',
             'breed' => 'Cat',
-            'date' => '2023-05-26',
+            'date' => '2023-06-01',
             'how_long' => '1 dag',
             'cost' => 20,
             'age' => 3,
             'pet_picture' => "http://127.0.0.1:8000/images/Cat.png",
+            'description' => 'Wauw! dit is echt een geweldige kant, 
+            genaamd naar dat diertje van avater the last airbender. 
+            Momo je kent hem wel. Kortom een top dier om op op tepassen'
         ]);
+
 
 
         Pet::create([
@@ -33,8 +37,8 @@ class PetSeeder extends Seeder
 
         Pet::create([
             'name' => 'Fluffy',
-            'breed' => 'Rabbit',
-            'date' => '2023-05-26',
+            'breed' => 'Other',
+            'date' => '2023-05-24',
             'how_long' => '2 dagen',
             'cost' => 10,
             'age' => 6,

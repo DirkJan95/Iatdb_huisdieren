@@ -5,7 +5,10 @@
 @foreach ($pets as $pet)
     @if ($pet->claim_status === 'pending')
         <div class="pet-info">
-            <!-- Display pet information -->
+            <h2>{{ $pet->name }}</h2>
+            <img src="{{ $pet->pet_picture }}" alt="Pet" style="width:20%"/>
+            <p>Breed: {{ $pet->breed }}</p>
+            <p>Date: {{ $pet->date }}</p>  
 
             <form action="{{ route('pets.denyClaim', ['pet' => $pet->id]) }}" method="POST">
                 @csrf

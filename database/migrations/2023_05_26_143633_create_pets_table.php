@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('how_long');
             $table->integer('cost');
             $table->integer('age')->unsigned();
-            $table->string('description')->nullable();;
+            $table->text('description')->nullable();;
             $table->string('pet_picture')->nullable();
             $table->string('claim_status')->nullable();
             $table->integer('claimedUserId')->nullable();

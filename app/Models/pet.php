@@ -34,6 +34,7 @@ class Pet extends Model
         'claim_status',
         'ownerId',
         'claimedUserId',
+        'description',
     ];
 
     /**
