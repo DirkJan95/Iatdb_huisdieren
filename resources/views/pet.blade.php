@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row justify-content-center">    
-        <div class="petCard" style="width: 850px;">                           
-            <img src="{{ $pet->pet_picture }}" alt="Pet Picture" style="width: 450px;">            
+<div class="petContainer">
+    <div class="row">    
+        <div class="petCardOne" >                           
+            <img src="{{ $pet->pet_picture }}" alt="Pet Picture">            
             <hr/>
             <div class="petCardContent">
                 <div class="leftSide">
@@ -14,7 +14,7 @@
                     <p>Datum: {{ $pet->date }}</p>
                     <p>Hoe lang: {{ $pet->how_long }}</p>
                     <p>Kost per uur: ${{ $pet->cost }}</p>
-                    <p>leeftijd: {{ $pet->age }} years</p>                    
+                    <p>leeftijd: {{ $pet->age }} jaar</p>                    
                 </div>
                 <div class="rightSide">                                     
                     <p>{{ $pet->description }}</p>

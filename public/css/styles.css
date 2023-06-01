@@ -4,14 +4,32 @@ body {
     background-color: #f9f7fd;
     color: #100a1f;
     margin: 0;
-    font-family: 'FontName', sans-serif;
+    font-family: 'FontName', sans-serif;    
 }
 
 .grid {
     width: 100%;    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
-    grid-auto-rows: 520px;
+    grid-auto-rows: 55vh;
+}
+
+h1{
+  margin-left: 16px;
+}
+
+.gridYourOwnPets {
+  width: 100%;    
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
+  grid-auto-rows: 65vh;
+}
+
+.gridYourClaimedPets {
+  width: 100%;    
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
+  grid-auto-rows: 50vh;
 }
 
 .petCard {
@@ -32,19 +50,17 @@ body {
     padding: 2px 16px;    
   }
 
-img {
+  .petCard img {
     width: 100%;
     height: 300px;
     border-radius: 5px 5px 0 0;
   }
 
-/* Add a black background color to the top navigation */
 .topnav {
   background-color: #e4baaa;
   overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -63,13 +79,11 @@ img {
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
   background-color: #aae4ba;
   color: #ffffff;
 }
 
-/* Add a color to the active/current link */
 .topnav a.active {
   background-color: #aae4ba;
   color: #ffffff;
@@ -83,10 +97,10 @@ img {
 }
 
 .filters {
-  max-width: 400px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px; 
-
+  background-color: #e4baaa;  
 }
 
 .filters .form-group {
@@ -95,7 +109,8 @@ img {
 
 .filters label {
   display: inline-block;
-  width: 120px;
+  width: 150px;
+  margin: 8px;
   text-align: right;
   margin-right: 10px;
 }
@@ -145,3 +160,60 @@ input[type="date"] {
   color: #aae4ba;
   text-align: center;
 }
+
+.petContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  margin: 0;
+}
+
+.petCardOne {
+  width: 700px;
+  background-color: #e4baaa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+}
+
+.petCardOne img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.petCardContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.petCardOne .leftSide {
+  flex: 1;
+}
+
+.petCardOne .rightSide {
+  flex: 1;
+  margin-right: 50px;
+}
+
+.petCardContent h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.petCardContent p {
+  margin-bottom: 5px;
+}
+
+.petCardContent hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+

@@ -25,6 +25,13 @@ class UserController extends Controller
         return view('profiel', compact('user'));
     }
 
+    public function showProfile()
+    {
+        $user = auth()->user();
+
+        return view('profiel', compact('user'));
+    }
+
     public function update(Request $request, User $user)
     {
         $request->validate([

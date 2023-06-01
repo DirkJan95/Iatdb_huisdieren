@@ -18,7 +18,10 @@ class PetSeeder extends Seeder
             'cost' => 20,
             'age' => 3,
             'pet_picture' => "http://127.0.0.1:8000/images/Cat.png",
-            'description' => 'Wauw! dit is echt een geweldige kant, 
+            'description' => 'Wauw! dit is echt een geweldige kat, 
+            genaamd naar dat diertje van avater the last airbender. 
+            Momo je kent hem wel. Kortom een top dier om op op tepassen.
+            Wauw! dit is echt een geweldige kat, 
             genaamd naar dat diertje van avater the last airbender. 
             Momo je kent hem wel. Kortom een top dier om op op tepassen'
         ]);

@@ -11,9 +11,9 @@
 <body>
     <header>
         <div class="topnav">
-            <a class="active" href="/">Pets!</a>
-            <a href="/jouwDieren">Jouw 'huisdieren'</a>      
-            <a href="/profile">Profiel</a>            
+            <a class="{{ request()->is('/') ? 'active' : '' }}" href="/">Pets!</a>
+            <a class="{{ request()->is('jouwDieren') ? 'active' : '' }}" href="/jouwDieren">Jouw dieren</a>      
+            <a class="{{ request()->is('profiel') ? 'active' : '' }}" href="/profiel">Profiel</a>            
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit">Logout</button>

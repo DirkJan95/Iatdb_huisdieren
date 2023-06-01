@@ -35,6 +35,7 @@ Route::middleware('auth', 'blocked')->group(function () {
 
 
     Route::get('/profiel/{id}', [UserController::class, 'getProfile'])->name('profile.show');
+    Route::get('/profiel', [UserController::class, 'showProfile'])->name('profiel');
     Route::get('/pet/{id}', [PetController::class, 'getPet']);
     Route::get('/', [PetController::class, 'index'])->name('pet.index');
     Route::get('/jouwDieren', [PetController::class, 'yourpets']);
