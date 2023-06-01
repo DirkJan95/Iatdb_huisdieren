@@ -50,11 +50,11 @@
                     <h4>Soort: {{ $pet->breed }}</h4>
                     <h4>Datum: {{ $pet->date }}</h4>  
                     @if($pet->claim_status == 'claimed')
-                        <a href="/profiel/{{ $pet->claimedUserId }}">oppasser</a>      
+                        <a href="/profiel/{{ $pet->claimedUserId }}">Oppasser: {{ \App\Models\User::find($pet->claimedUserId)->name }}</a>      
                     @endif
                     @if ($pet->claim_status === 'pending' && $pet->ownerId === auth()->id())
                         <h4>aanvraag door:</h4>
-                        <a href="/profiel/{{ $pet->claimedUserId }}">oppasser</a>    
+                        <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>    
                         <form action="{{ route('pets.handleClaim', $pet->id) }}" method="POST">
                             @csrf
                             <button type="submit" name="action" value="accept">Accept</button>
@@ -76,8 +76,8 @@
     @endforeach
 </div>
 
-
 <h1>Oppas huisdieren!</h1>
+
 <div class="gridYourClaimedPets"> 
     @foreach ($linkedPets as $pet)
         @if(auth()->user()->id === $pet->claimedUserId && $pet->claim_status === 'claimed')
@@ -85,8 +85,8 @@
                 <img src="{{ $pet->pet_picture }}" alt="Pet"/>
                 <div class="petCardTextContainer">
                     <h2>{{ $pet->name }}</h2>
-                    <p>Breed: {{ $pet->breed }}</p>
-                    <p>Date: {{ $pet->date }}</p>  
+                    <p>Soort: {{ $pet->breed }}</p>
+                    <p>Datum: {{ $pet->date }}</p>  
                 </div>      
             </div>
         @endif

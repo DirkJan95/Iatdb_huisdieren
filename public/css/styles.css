@@ -11,7 +11,7 @@ body {
     width: 100%;    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
-    grid-auto-rows: 55vh;
+    grid-auto-rows: 550px;
 }
 
 h1{
@@ -22,14 +22,14 @@ h1{
   width: 100%;    
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
-  grid-auto-rows: 65vh;
+  grid-auto-rows: 600px;
 }
 
 .gridYourClaimedPets {
   width: 100%;    
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 475px));
-  grid-auto-rows: 50vh;
+  grid-auto-rows: 480px;
 }
 
 .petCard {
@@ -217,3 +217,24 @@ input[type="date"] {
   border-top: 1px solid #ddd;
 }
 
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-container .profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-container .profile-info img {
+  margin-left: 20px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-container .profile-info p {
+  margin-right: 20px;
+}

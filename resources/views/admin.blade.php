@@ -1,23 +1,27 @@
 @extends('layout')
 
 @section('content')
-
+<div class="grid"> 
 @foreach ($pets as $pet)
-    @if ($pet->claim_status === 'pending')
+@if ($pet->claim_status === 'pending')
+    <div class="petCard">
         <div class="pet-info">
-            <h2>{{ $pet->name }}</h2>
-            <img src="{{ $pet->pet_picture }}" alt="Pet" style="width:20%"/>
-            <p>Breed: {{ $pet->breed }}</p>
-            <p>Date: {{ $pet->date }}</p>  
-
-            <form action="{{ route('pets.denyClaim', ['pet' => $pet->id]) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <button type="submit">Deny Claim</button>
-            </form>
+            <img src="{{ $pet->pet_picture }}" alt="Pet" />
+            <div class="petCardTextContainer">
+                <h2>{{ $pet->name }}</h2>                
+                <p>Datum: {{ $pet->date }}</p>
+                <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>     
+                <form class="claimForm" action="{{ route('pets.denyClaim', ['pet' => $pet->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button type="submit">Aanvraag annuleren</button>
+                </form>
+            </div>
         </div>
+    </div>
     @endif
 @endforeach
+</div>
 
 <h1>User List</h1>
 
