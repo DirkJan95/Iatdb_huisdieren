@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('age')->unsigned();
             $table->string('description')->nullable();;
             $table->string('pet_picture')->nullable();
-            $table->boolean('claimed')->nullable();
+            $table->string('claim_status')->nullable();
+            $table->integer('claimedUserId')->nullable();
             $table->integer('ownerId')->nullable();
             $table->timestamps();
         });

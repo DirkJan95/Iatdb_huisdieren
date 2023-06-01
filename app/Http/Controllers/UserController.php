@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -16,5 +16,31 @@ class UserController extends Controller
         $users = DB::table('users')->select('id', 'name')->get();
 
         return view('some-view')->with('users', $users);
+    }
+
+    public function getProfile($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('profiel', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'house_pictures' => 'nullable|string',
+        ]);
+
+        $housePictures = $request->house_pictures;
+
+        if (!empty($housePictures)) {
+            $housePictures = 'http://127.0.0.1:8000/images/' . $housePictures;
+        }
+
+        $user->update([
+            'house_pictures' => $housePictures,
+        ]);
+
+        return redirect()->back()->with('status', 'House pictures updated successfully.');
     }
 }

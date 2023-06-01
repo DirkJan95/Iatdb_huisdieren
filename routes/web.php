@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +29,22 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/petAdded', 'App\Http\Controllers\PetController@store')->name('pet.store');
+    Route::get('/profiel/{id}', 'App\Http\Controllers\UserController@getProfile');
     Route::get('/pet/{id}', 'App\Http\Controllers\PetController@getPet');
-    Route::get('/petsOverview', 'App\Http\Controllers\PetController@index')->name('pet.index');
-    Route::get('/jouwDieren', 'App\Http\Controllers\PetController@yourPets');
-    Route::post('/pets/{pet}/claim', 'App\Http\Controllers\PetController@claim')->name('pets.claim');
+    Route::get('/petsOverview', [PetController::class, 'index'])->name('pet.index');
+    Route::get('/jouwDieren', [PetController::class, 'yourpets']);
+    Route::get('/users/{userId}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+
+    Route::post('/petAdded', 'App\Http\Controllers\PetController@store')->name('pet.store');
+    Route::post('/pets/{pet}/claim', [PetController::class, 'claim'])->name('pets.claim');
+    Route::post('/users/{userId}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('/pets/{pet}/handle-claim', [PetController::class, 'handleClaim'])->name('pets.handleClaim');
+
+    Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    // Add route for all reviews
+    // Add route for admin all reviews
 });
 
 require __DIR__ . '/auth.php';

@@ -44,11 +44,33 @@
     @if(!auth()->user()->id != $pet->ownerId)
         <div>
             <h2>{{ $pet->name }}</h2>
+            <img src="{{ $pet->pet_picture }}" alt="Pet" style="width:20%"/>
             <p>Breed: {{ $pet->breed }}</p>
-            <p>Date: {{ $pet->date }}</p>        
+            <p>Date: {{ $pet->date }}</p>  
+            @if($pet->claim_status == 'claimed')
+                <a href="/profiel/{{ $pet->claimedUserId }}">oppasser</a>      
+            @endif
+            @if ($pet->claim_status === 'pending' && $pet->ownerId === auth()->id())
+                <h4>aanvraag door:</h4>
+                <a href="/profiel/{{ $pet->claimedUserId }}">oppasser</a>    
+                <form action="{{ route('pets.handleClaim', $pet->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" name="action" value="accept">Accept</button>
+                    <button type="submit" name="action" value="deny">Deny</button>
+                </form>
+                <form action="{{ route('reviews.store', $pet->claimedUserId) }}" method="POST">
+                    @csrf
+                    <div>
+                        <textarea name="review" rows="5" placeholder="Write your review"></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            @endif
         </div>
     @endif
 @endforeach
+
+
 
 <h1>Oppas huisdieren!</h1>
 @foreach ($linkedPets as $pet)

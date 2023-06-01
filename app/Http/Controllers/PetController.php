@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
@@ -14,11 +12,22 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pets = Pet::all();
+        $query = Pet::query();
 
-        return view('petsOVerview')->with('pets', $pets);
+        if ($request->filled('breed')) {
+            $query->where('breed', $request->input('breed'));
+        }
+
+        if ($request->filled('age')) {
+            $ageRange = explode('-', $request->input('age'));
+            $query->whereBetween('age', $ageRange);
+        }
+
+        $pets = $query->get();
+
+        return view('petsOverview', compact('pets'));
     }
 
     public function getPet($id)
@@ -45,6 +54,10 @@ class PetController extends Controller
             'age' => 'required|integer',
             'pet_picture' => 'nullable|string',
         ]);
+
+        if ($request->has('pet_picture')) {
+            $data['pet_picture'] = 'http://127.0.0.1:8000/images/' . $request->input('pet_picture');
+        }
 
         $data['ownerId'] = $request->user()->id;
         $user = $request->user();
@@ -73,8 +86,6 @@ class PetController extends Controller
             'pet_picture' => 'nullable|string',
         ]);
 
-
-
         $pet->update($data);
 
         return response()->json($pet);
@@ -91,10 +102,31 @@ class PetController extends Controller
     public function claim(Request $request, Pet $pet)
     {
         $user = $request->user();
-        $pet->update(['claimed' => true]);
+        $pet->update(['claim_status' => 'pending', 'claimedUserId' => $request->user()->id]);
         $user->pets()->attach($pet);
 
 
         return redirect()->back()->with('status', 'Pet claimed successfully.');
+    }
+
+    public function handleClaim(Request $request, Pet $pet)
+    {
+        $action = $request->input('action');
+
+        $user = $request->user();
+
+        if ($user->id !== $pet->ownerId) {
+            return redirect()->back()->with('error', 'You are not authorized to perform this action.');
+        }
+
+        if ($action === 'accept') {
+            $pet->update(['claim_status' => 'claimed']);
+            return redirect()->back()->with('status', 'Pet claim accepted.');
+        } elseif ($action === 'deny') {
+            $pet->update(['claimedUserId' => null, 'claim_status' => null]);
+            return redirect()->back()->with('status', 'Pet claim denied.');
+        }
+
+        return redirect()->back()->with('error', 'Invalid action.');
     }
 }

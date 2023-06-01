@@ -14,9 +14,7 @@
         <div class="topnav">
             <a class="active" href="/petsOverview">Pets!</a>
             <a href="/jouwDieren">Jouw 'huisdieren'</a>      
-            <a href="/profile">
-                Edit Profile
-            </a>            
+            <a href="/profile">Profiel</a>            
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit">Logout</button>

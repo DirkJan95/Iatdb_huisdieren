@@ -25,7 +25,7 @@ class PetSeeder extends Seeder
             'name' => 'Coco',
             'breed' => 'Dog',
             'date' => '2023-05-26',
-            'how_long' => '18 uur',
+            'how_long' => '1 dag',
             'cost' => 15,
             'age' => 1,
             'pet_picture' => "http://127.0.0.1:8000/images/Dog.png",

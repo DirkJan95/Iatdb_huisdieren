@@ -22,11 +22,17 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'house_pictures',
     ];
 
     public function pets(): BelongsToMany
     {
         return $this->belongsToMany(Pet::class, 'user_pet');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     public function isAdmin()
