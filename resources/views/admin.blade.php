@@ -2,6 +2,20 @@
 
 @section('content')
 
+@foreach ($pets as $pet)
+    @if ($pet->claim_status === 'pending')
+        <div class="pet-info">
+            <!-- Display pet information -->
+
+            <form action="{{ route('pets.denyClaim', ['pet' => $pet->id]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <button type="submit">Deny Claim</button>
+            </form>
+        </div>
+    @endif
+@endforeach
+
 <h1>User List</h1>
 
 <table>

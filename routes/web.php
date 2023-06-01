@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 
@@ -44,8 +45,10 @@ Route::middleware('auth', 'blocked')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::put('/users/{user}/block', [UserController::class, 'block'])->name('users.block');
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+    Route::put('/users/{user}/block', [AdminController::class, 'block'])->name('users.block');
+    Route::put('/pets/{pet}/deny-claim', [AdminController::class, 'denyClaim'])->name('pets.denyClaim');
 });
 
 require __DIR__ . '/auth.php';

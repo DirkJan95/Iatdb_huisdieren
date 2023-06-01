@@ -13,8 +13,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // Apply authorization logic to ensure only admins can access this method
-
         $users = User::all();
 
         return view('users', compact('users'));
@@ -44,16 +42,5 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'House pictures updated successfully.');
-    }
-
-    public function block(User $user)
-    {
-        if ($user->role === 'admin') {
-            return redirect()->back()->with('error', 'Admin users cannot be blocked.');
-        }
-
-        $user->update(['blocked' => true]);
-
-        return redirect()->back()->with('status', 'User blocked successfully.');
     }
 }
