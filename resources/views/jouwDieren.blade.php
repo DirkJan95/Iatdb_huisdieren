@@ -41,7 +41,7 @@
 
 <h1>Jouw huisdieren!</h1>
 @foreach ($linkedPets as $pet)    
-    @if(!auth()->user()->id != $pet->ownerId)
+    @if(auth()->user()->id === $pet->ownerId)
         <div>
             <h2>{{ $pet->name }}</h2>
             <img src="{{ $pet->pet_picture }}" alt="Pet" style="width:20%"/>
@@ -57,7 +57,9 @@
                     @csrf
                     <button type="submit" name="action" value="accept">Accept</button>
                     <button type="submit" name="action" value="deny">Deny</button>
-                </form>
+                </form>                
+            @endif
+            @if ($pet->claim_status === 'claimed' && $pet->ownerId === auth()->id())
                 <form action="{{ route('reviews.store', $pet->claimedUserId) }}" method="POST">
                     @csrf
                     <div>
@@ -77,6 +79,7 @@
     @if(auth()->user()->id != $pet->ownerId)
         <div>
             <h2>{{ $pet->name }}</h2>
+            <img src="{{ $pet->pet_picture }}" alt="Pet" style="width:20%"/>
             <p>Breed: {{ $pet->breed }}</p>
             <p>Date: {{ $pet->date }}</p>        
         </div>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('house_pictures')->nullable();
             $table->string('role')->nullable();
+            $table->boolean('blocked')->nullable();
         });
     }
 

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'house_pictures',
+        'blocked',
     ];
 
     public function pets(): BelongsToMany
@@ -38,5 +39,17 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role === 'admin';
+    }
+
+    public function hasReviewed($userId)
+    {
+        return Review::where('reviewer_id', $this->id)
+            ->where('user_id', $userId)
+            ->exists();
+    }
+
+    public function isBlocked()
+    {
+        return $this->blocked;
     }
 }

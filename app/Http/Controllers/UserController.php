@@ -13,9 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->select('id', 'name')->get();
+        // Apply authorization logic to ensure only admins can access this method
 
-        return view('some-view')->with('users', $users);
+        $users = User::all();
+
+        return view('users', compact('users'));
     }
 
     public function getProfile($id)
@@ -42,5 +44,16 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'House pictures updated successfully.');
+    }
+
+    public function block(User $user)
+    {
+        if ($user->role === 'admin') {
+            return redirect()->back()->with('error', 'Admin users cannot be blocked.');
+        }
+
+        $user->update(['blocked' => true]);
+
+        return redirect()->back()->with('status', 'User blocked successfully.');
     }
 }

@@ -29,6 +29,6 @@ class ReviewController extends Controller
 
         $user->reviews()->save($review);
 
-        return redirect()->back()->with('status', 'Review added successfully.');
+        return redirect()->route('profile.show', ['id' => $userId])->with('status', 'Review added successfully.');
     }
 }
