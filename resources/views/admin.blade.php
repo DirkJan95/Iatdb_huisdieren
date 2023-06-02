@@ -41,6 +41,8 @@
                 <td>
                     @if ($user->role === 'admin')
                         N/A
+                    @elseif ($user->blocked === true)
+                        Blocked user
                     @else
                         <form action="{{ route('users.block', $user->id) }}" method="POST">
                             @csrf
