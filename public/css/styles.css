@@ -334,3 +334,36 @@ footer p {
 .profile-container .profile-info p {
   margin-right: 20px;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f5f5f5;
+  text-align: left;
+}
+
+table td button {
+  padding: 5px 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table td button:hover {
+  background-color: #c0392b;
+}
+
+table td.actions {
+  text-align: center;
+}

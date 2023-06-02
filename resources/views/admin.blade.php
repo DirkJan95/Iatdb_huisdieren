@@ -10,7 +10,10 @@
             <div class="petCardTextContainer">
                 <h2>{{ $pet->name }}</h2>                
                 <p>Datum: {{ $pet->date }}</p>
-                <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>     
+                <p>
+                    <strong>Aanvrager:</strong>
+                    <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>  
+                </p>                     
                 <form class="claimForm" action="{{ route('pets.denyClaim', ['pet' => $pet->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -41,7 +44,7 @@
                 <td>
                     @if ($user->role === 'admin')
                         N/A
-                    @elseif ($user->blocked === true)
+                    @elseif ($user->blocked === 1)
                         Blocked user
                     @else
                         <form action="{{ route('users.block', $user->id) }}" method="POST">
