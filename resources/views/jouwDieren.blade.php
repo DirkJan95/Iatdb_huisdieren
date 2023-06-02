@@ -35,6 +35,9 @@
         <input type="file" name="pet_picture" id="pet_picture">
     </div>
     <div>
+        <textarea name="description" rows="5" placeholder="Voeg een beschrijving toe"></textarea>
+    </div>
+    <div>
         <button type="submit">Voeg toe!</button>
     </div>
 </form>
@@ -50,22 +53,27 @@
                     <h4>Soort: {{ $pet->breed }}</h4>
                     <h4>Datum: {{ $pet->date }}</h4>  
                     @if($pet->claim_status == 'claimed')
-                        <a href="/profiel/{{ $pet->claimedUserId }}">Oppasser: {{ \App\Models\User::find($pet->claimedUserId)->name }}</a>      
+                        <p>
+                            <strong>Oppasser:</strong>
+                            <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>  
+                        </p>    
                     @endif
-                    @if ($pet->claim_status === 'pending' && $pet->ownerId === auth()->id())
-                        <h4>aanvraag door:</h4>
-                        <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>    
-                        <form action="{{ route('pets.handleClaim', $pet->id) }}" method="POST">
+                    @if ($pet->claim_status === 'pending' && $pet->ownerId === auth()->id())                        
+                        <p>
+                            <strong>aanvraag door:</strong>
+                            <a href="/profiel/{{ $pet->claimedUserId }}">{{ \App\Models\User::find($pet->claimedUserId)->name }}</a>  
+                        </p>    
+                        <form class="claimFormAcceptDeny" action="{{ route('pets.handleClaim', $pet->id) }}" method="POST">
                             @csrf
-                            <button type="submit" name="action" value="accept">Accept</button>
-                            <button type="submit" name="action" value="deny">Deny</button>
+                            <button type="submit" name="action" value="accept">Accepteren</button>
+                            <button type="submit" name="action" value="deny">Afwijzen</button>
                         </form>                
                     @endif
                     @if ($pet->claim_status === 'claimed' && $pet->ownerId === auth()->id())
-                        <form action="{{ route('reviews.store', $pet->claimedUserId) }}" method="POST">
+                        <form class="claimForm" action="{{ route('reviews.store', $pet->claimedUserId) }}" method="POST">
                             @csrf
                             <div>
-                                <textarea name="review" rows="5" placeholder="Write your review"></textarea>
+                                <textarea name="review" rows="5" placeholder="Schrijf een review"></textarea>
                             </div>
                             <button type="submit">Submit</button>
                         </form>

@@ -57,6 +57,7 @@ class PetController extends Controller
             'cost' => 'required|integer',
             'age' => 'required|integer',
             'pet_picture' => 'nullable|string',
+            'description' => 'nullable|string',
         ]);
 
         if ($request->has('pet_picture')) {

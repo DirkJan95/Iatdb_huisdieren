@@ -21,7 +21,13 @@
           </div>              
     </header>    
 
-    @yield('content')
+    <div class="content-wrap">
+        @yield('content')
+    </div>
 
+    <footer>
+        <p>Door Dirk Jan Remmerswaal</p>
+        <p><a href="mailto:hege@example.com">dirkjan@example.com</a></p>
+    </footer>
 </body>
 </html>
